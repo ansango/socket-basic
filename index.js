@@ -26,7 +26,10 @@ app.use(express.static(__dirname + "/public"));
 
 io.on("connection", (socket) => {
   console.log(socket.id);
-  socket.emit("hello", "Welcome to Socket Basic Chat");
+  socket.emit("hello", {
+    msg: "Welcome to Socket Basic Chat",
+    date: new Intl.DateTimeFormat("es-ES").format(new Date()),
+  });
 });
 
 server.listen(8080, () => console.log("server running in PORT 8080"));
