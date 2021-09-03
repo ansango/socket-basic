@@ -24,6 +24,9 @@ app.use(express.static(__dirname + "/public"));
  * * Running
  */
 
-io.on("connection", () => console.log("Client connected"));
+io.on("connection", (socket) => {
+  console.log(socket.id);
+  socket.emit("hello", "Welcome to Socket Basic Chat");
+});
 
 server.listen(8080, () => console.log("server running in PORT 8080"));
