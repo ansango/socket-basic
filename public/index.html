@@ -33,7 +33,7 @@
 
     <div class="row mt-3">
       <div class="col">
-        <ul class="messages">
+        <ul id="messages">
           <li>Hello</li>
         </ul>
       </div>
@@ -47,16 +47,18 @@
     ></script>
     <script>
       const socket = io("http://localhost:8080");
+      const form = document.querySelector("#form-socket");
+      const messages = document.querySelector("#messages");
       socket.on("hello", (res) => {
         console.log(res);
       });
 
-      setTimeout(() => {
-        socket.emit("helloClient", {
-          msg: "Hello from client",
-          date: new Intl.DateTimeFormat("es-ES").format(new Date()),
-        });
-      }, 2000);
+      //   setTimeout(() => {
+      //     socket.emit("helloClient", {
+      //       msg: "Hello from client",
+      //       date: new Intl.DateTimeFormat("es-ES").format(new Date()),
+      //     });
+      //   }, 2000);
     </script>
   </body>
 </html>
