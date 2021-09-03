@@ -30,6 +30,10 @@ io.on("connection", (socket) => {
     msg: "Welcome to Socket Basic Chat",
     date: new Intl.DateTimeFormat("es-ES").format(new Date()),
   });
+
+  socket.on("helloClient", (res) => {
+    console.log(res);
+  });
 });
 
 server.listen(8080, () => console.log("server running in PORT 8080"));

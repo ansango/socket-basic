@@ -19,6 +19,13 @@
       socket.on("hello", (res) => {
         console.log(res);
       });
+
+      setTimeout(() => {
+        socket.emit("helloClient", {
+          msg: "Hello from client",
+          date: new Intl.DateTimeFormat("es-ES").format(new Date()),
+        });
+      }, 2000);
     </script>
   </body>
 </html>
