@@ -25,14 +25,10 @@ app.use(express.static(__dirname + "/public"));
  */
 
 io.on("connection", (socket) => {
-  console.log(socket.id);
-  socket.emit("hello", {
-    msg: "Welcome to Socket Basic Chat",
-    date: new Intl.DateTimeFormat("es-ES").format(new Date()),
-  });
-
-  socket.on("helloClient", (res) => {
-    console.log(res);
+  const id = socket.id;
+  socket.on("messageToServer", (res) => {
+    console.log({ id, res });
+    socket.emit("messageFromServer", res);
   });
 });
 

@@ -26,7 +26,7 @@
           />
         </div>
         <div class="col-1">
-          <button class="btn btn-primary">Send</button>
+          <button type="submit" class="btn btn-primary">Send</button>
         </div>
       </div>
     </form>
@@ -49,16 +49,18 @@
       const socket = io("http://localhost:8080");
       const form = document.querySelector("#form-socket");
       const messages = document.querySelector("#messages");
-      socket.on("hello", (res) => {
-        console.log(res);
+      const message = document.querySelector("#msg");
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const newMessage = message.value;
+        const date = new Intl.DateTimeFormat("es-ES").format(new Date());
+        socket.emit("messageToServer", { newMessage, date });
       });
 
-      //   setTimeout(() => {
-      //     socket.emit("helloClient", {
-      //       msg: "Hello from client",
-      //       date: new Intl.DateTimeFormat("es-ES").format(new Date()),
-      //     });
-      //   }, 2000);
+      socket.on("messageFromServer", (res) => {
+        console.log("from server", res);
+      });
+      /
     </script>
   </body>
 </html>
