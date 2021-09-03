@@ -33,9 +33,7 @@
 
     <div class="row mt-3">
       <div class="col">
-        <ul id="messages">
-          <li>Hello</li>
-        </ul>
+        <ul id="messages"></ul>
       </div>
     </div>
 
@@ -58,9 +56,9 @@
       });
 
       socket.on("messageFromServer", (res) => {
-        console.log("from server", res);
+        const { newMessage } = res;
+        messages.innerHTML += `<li>${newMessage}</li>`;
       });
-      /
     </script>
   </body>
 </html>

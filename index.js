@@ -28,7 +28,7 @@ io.on("connection", (socket) => {
   const id = socket.id;
   socket.on("messageToServer", (res) => {
     console.log({ id, res });
-    socket.emit("messageFromServer", res);
+    io.emit("messageFromServer", res);
   });
 });
 
